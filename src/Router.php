@@ -9,18 +9,24 @@ class Router
 	public static $routes = [];
 
 
-	public static function addRoute(array $methods, string $route, array $path, callable $func)
+	public static function addRoute(array $methods, string $route, array $controllerAction, callable $func)
 	{
-		array_push(self::$routes, [
-			'methods'       => $methods,
-			'route'         =>  $route,
-			'path'          =>  $path,
-			'middlewares'   =>  $func()
-		]);
+	    foreach ($methods as &$method){
+            $key = strtoupper($method) .'-'. $route;
+            self::$routes[$key] = [
+                'methods'           => $methods,
+                'route'             =>  $route,
+                'controllerAction'  =>  $controllerAction,
+                'middlewares'       =>  $func()
+            ];
+        }
 	}
 
-	public function middlewares()
+	public function getRoute(string $routeKey = null)
 	{
-
+	    if ($routeKey) {
+	        return self::$routes[$routeKey];
+        }
+	    return null;
 	}
 }

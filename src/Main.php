@@ -9,6 +9,16 @@ use Soen\Http\Message\Response;
 
 class Main
 {
+
+    /**
+     * @var Router
+     */
+    public $router;
+    /**
+     * 所有路由集合
+     * @var array
+     */
+    public $routes;
 	/**
 	 * 请求方法
 	 * @var null
@@ -21,11 +31,13 @@ class Main
 	 */
 	public $middleware = [];
 
-	function __construct()
+	function __construct(Router $router)
 	{
+	    $this->router = $router;
+	    $this->routes = $this->router->getRoutes();
 	}
 
 	function run (Request $request, Response $response){
-
+        
 	}
 }
