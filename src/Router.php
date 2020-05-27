@@ -8,7 +8,6 @@ class Router
 {
 	public static $routes = [];
 
-
 	public static function addRoute(array $methods, string $route, array $controllerAction, callable $func)
 	{
 	    foreach ($methods as &$method){
