@@ -4,11 +4,17 @@ declare(strict_types=1);
 namespace Soen\Router;
 
 
+use Soen\Filesystem\File;
+
 class Router
 {
 	public static $routes = [];
 
-	public static function addRoute(array $methods, string $route, array $controllerAction, callable $func)
+	function __construct()
+    {
+    }
+
+    public static function addRoute(array $methods, string $route, array $controllerAction, callable $func)
 	{
 	    foreach ($methods as &$method){
             $key = strtoupper($method) .'-'. $route;
@@ -28,4 +34,8 @@ class Router
         }
 	    return null;
 	}
+
+	public function test(){
+	    echo 'this is test';
+    }
 }

@@ -4,13 +4,19 @@
 namespace Soen\Router;
 
 
+use Soen\Filesystem\File;
+
 class Provider
 {
-	function __construct()
+    public $routes;
+    
+	function __construct($routesPath)
 	{
+	    $this->parse($routesPath);
 	}
 
 	function parse(){
-
+        $files = new File();
+        $files->readFilesRequire($routesPath);
 	}
 }
