@@ -22,8 +22,9 @@ class Provider
         $files->readFilesRequire($routesPath);
 	}
 
-	function setRouteActive(Request $request, Response $response){
-		$this->routeActive = new RouteActive($request, $response);
+	function setRouteActive(Request $request){
+		$this->routeActive = new RouteActive($request);
+		return $this->routeActive;
 	}
 
 	function getRouteActive(Request $request, Response $response){
