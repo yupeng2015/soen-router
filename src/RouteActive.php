@@ -12,6 +12,7 @@ class RouteActive
 	/**
 	 * @var array
 	 */
+	public $routeActive;
     public $route;
     public $middleware;
     public $method;
@@ -21,14 +22,14 @@ class RouteActive
     {
 	    $router = new Router();
         $key = $request->getMethod() . '-' . $request->getUri()->getPath();
-        $routeActive = $router->getRoute($key);
-        if (!$routeActive) {
+        $this->routeActive = $router->getRoute($key);
+        if (!$this->routeActive ) {
             throw new NotFoundException('Not Found (#404)');
         }
-        $this->route = $routeActive['route'];
+        $this->route = $this->routeActive ['route'];
         $this->method = $request->getMethod();
-        $this->classAction = $routeActive['controllerAction'];
-        $this->middleware = $routeActive['middlewares'];
+        $this->classAction = $this->routeActive ['controllerAction'];
+        $this->middleware = $this->routeActive ['middlewares'];
     }
 
 	/**
@@ -36,7 +37,7 @@ class RouteActive
 	 */
 	public function getRoute():array
 	{
-		return $this->route;
+		return $this->routeActive;
 	}
 
     public function getMiddleware(){
