@@ -19,7 +19,7 @@ class Router
 	    foreach ($methods as &$method){
             $key = strtoupper($method) .'-'. $route;
             self::$routes[$key] = [
-                'methods'           => $methods,
+                'methods'           =>  $methods,
                 'route'             =>  $route,
                 'controllerAction'  =>  $controllerAction,
                 'middlewares'       =>  $func()

@@ -47,4 +47,16 @@ class RouteActive
     public function getMethod(){
     	return $this->method;
     }
+
+    /**
+     * @return array|mixed
+     */
+    public function getClassAction($instance = false)
+    {
+        list($class, $action) = $this->classAction;
+        if($instance){
+            return [new $class, $action];
+        }
+        return $this->classAction;
+    }
 }
