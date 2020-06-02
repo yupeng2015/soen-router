@@ -32,25 +32,33 @@ class Router
 	    return $key;
 	}
 
+	/**
+	 * @param array $middlewares
+	 * @param array $routes
+	 */
 	public static function group(array $middlewares, array $routes){
-	    array_walk($routes, function ($routeKey, $key){
-            var_dump(self::$routes[$routeKey]['middlewares']);
+	    array_walk($routes, function ($routeKey)use($middlewares){
             self::$routes[$routeKey]['middlewares'] = self::$routes[$routeKey]['middlewares'] + $middlewares['middle'];
         });
-
     }
 
+	/**
+	 * @param string $route
+	 * @param array $controllerAction
+	 * @param array $middlewares
+	 * @return string
+	 */
     public static function get(string $route, array $controllerAction, array $middlewares) {
         return self::add(['get'], $route, $controllerAction, $middlewares);
     }
-    public static function post() {
-
+    public static function post(string $route, array $controllerAction, array $middlewares) {
+	    return self::add(['post'], $route, $controllerAction, $middlewares);
     }
-    public static function put() {
-
+    public static function put(string $route, array $controllerAction, array $middlewares) {
+	    return self::add(['put'], $route, $controllerAction, $middlewares);
     }
-    public static function delete() {
-
+    public static function delete(string $route, array $controllerAction, array $middlewares) {
+	    return self::add(['delete'], $route, $controllerAction, $middlewares);
     }
     public function set(array $methods, string $route, array $controllerAction){
 
