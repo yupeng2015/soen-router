@@ -18,13 +18,14 @@ class Router
 	  new static();
     }
 
-    public static function add(array $methods, string $route, array $controllerAction, array $middlewares)
+    public static function add(array $methods, string $path, array $controllerAction, array $middlewares)
 	{
 	    foreach ($methods as &$method){
-            $key = strtoupper($method) .'-'. $route;
+            $key = strtoupper($method) .'-'. $path;
+
             self::$routes[$key] = [
                 'methods'           =>  $methods,
-                'route'             =>  $route,
+                'route'             =>  $path,
                 'controllerAction'  =>  $controllerAction,
                 'middlewares'       =>  $middlewares
             ];
@@ -63,6 +64,11 @@ class Router
     public function set(array $methods, string $route, array $controllerAction){
 
     }
+
+    public function parsePath(string $routeUrl){
+
+    }
+
 	public function getRoute(string $routeKey = null)
 	{
 	    if ($routeKey) {
