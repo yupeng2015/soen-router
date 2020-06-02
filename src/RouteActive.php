@@ -28,8 +28,8 @@ class RouteActive
         }
         $this->route = $this->routeActive ['route'];
         $this->method = $request->getMethod();
-        $this->classAction = $this->routeActive ['controllerAction'];
-        $this->middleware = $this->routeActive ['middlewares'];
+        $this->classAction = $this->routeActive['controllerAction'];
+        $this->middleware = $this->routeActive['middlewares'];
     }
 
 	/**
