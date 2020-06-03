@@ -11,7 +11,7 @@ use Soen\Http\Message\Response;
 class Provider
 {
     public $routes;
-    public $routeActive;
+    public $routeCurrent;
 	function __construct($routesPath)
 	{
 	    $this->parse($routesPath);
@@ -23,8 +23,8 @@ class Provider
 	}
 
 	function setRouteActive(Request $request){
-		$this->routeActive = new RouteActive($request);
-		return $this->routeActive;
+		$this->routeCurrent = (Router::new())->getRouteCurrent($request);
+		return $this->routeCurrent;
 	}
 
 	function getRouteActive(Request $request, Response $response){
