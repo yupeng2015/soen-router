@@ -115,9 +115,12 @@ class Router
                     }
                 } else {
                     if($regular){
-                        if(!preg_match('/' . $strArrRightVal . '/', $urlPathArr[$key])){
+                        if(!preg_match('/' . $strArrRightVal . '/', urldecode($urlPathArr[$key]))){
                             break;
                         }
+                        $params += [
+                            $strArrLeftVal =>  $urlPathArr[$key]
+                        ];
                     } else {
                         if($strArrLeftVal != $urlPathArr[$key]){
                             break;
@@ -134,9 +137,6 @@ class Router
 //                        break;
 //                    }
                 }
-                $params = [
-                    $strArrLeftVal =>  $urlPathArr[$key]
-                ];
                 $i++;
             }
             if($i == $routePathStrCount){

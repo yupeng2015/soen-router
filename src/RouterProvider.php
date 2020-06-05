@@ -8,7 +8,7 @@ use Soen\Filesystem\File;
 use Soen\Http\Message\Request;
 use Soen\Http\Message\Response;
 
-class Provider
+class RouterProvider
 {
     public $routes;
     public $routeCurrent;
@@ -22,12 +22,16 @@ class Provider
         $files->readFilesRequire($routesPath);
 	}
 
-	function setRouteActive(Request $request){
+    /**
+     * @param Request $request
+     * @return RouteCurrent|null
+     */
+	function setRouteCurrent(Request $request){
 		$this->routeCurrent = (Router::new())->getRouteCurrent($request);
 		return $this->routeCurrent;
 	}
 
-	function getRouteActive(Request $request, Response $response){
-		return $this->routeActive;
+	function getRouteCurrent(Request $request, Response $response){
+		return $this->routeCurrent;
 	}
 }
